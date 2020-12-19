@@ -37,7 +37,7 @@ Project parameters.
 ```yaml
 # config/services.yaml
 
-parameters:
+danilovl_hashids:
   salt: 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890'
   min_hash_length: 20
   alphabet: 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890'
