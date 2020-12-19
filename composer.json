@@ -1,0 +1,20 @@
+{
+    "name": "danilovl/hashids-bundle",
+    "type": "symfony-bundle",
+    "description": "Symfony bundle provides integrates hashids",
+    "keywords": ["php","symfony","bundle","twig extension"],
+    "authors": [
+        {
+            "name": "Vladimir Danilov"
+        }
+    ],
+    "autoload": {
+        "psr-4": { "Danilovl\\HashidsBundle\\": "src/" }
+    },
+    "require": {
+        "php": "^8.0.0",
+        "symfony/framework-bundle": "^5.0",
+        "symfony/twig-bundle": "^5.0",
+        "hashids/hashids": "^4.1.0"
+    }
+}

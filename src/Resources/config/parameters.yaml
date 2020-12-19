@@ -1,0 +1,2 @@
+hashids:
+  parameters: ['salt', 'min_hash_length', 'alphabet', 'continue_next_converter']

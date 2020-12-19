@@ -1,0 +1,7 @@
+services:
+  danilovl.twig.hashids:
+    class: Danilovl\HashidsBundle\Twig\HashidsExtension
+    public: false
+    autowire: true
+    tags:
+      - { name: twig.extension }
