@@ -34,4 +34,9 @@ class HashidsExtension extends Extension
             $container->setParameter("danilovl.hashids.{$parameter}", $config[$parameter]);
         }
     }
+
+    public function getAlias(): string
+    {
+        return Configuration::ALIAS;
+    }
 }

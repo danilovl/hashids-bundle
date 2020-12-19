@@ -10,11 +10,11 @@ use Symfony\Component\Config\Definition\ConfigurationInterface;
 
 class Configuration implements ConfigurationInterface
 {
-    public const TREE_KEY_NAME = 'danilovl_hashids';
+    public const ALIAS = 'danilovl_hashids';
 
     public function getConfigTreeBuilder(): NodeParentInterface
     {
-        $treeBuilder = new TreeBuilder(self::TREE_KEY_NAME);
+        $treeBuilder = new TreeBuilder(self::ALIAS);
         $rootNode = $treeBuilder->getRootNode();
 
         $rootNode
