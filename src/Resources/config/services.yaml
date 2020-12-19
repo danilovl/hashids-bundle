@@ -13,7 +13,7 @@ services:
   danilovl.hashids_param_converter:
     class: Danilovl\HashidsBundle\ParamConverter\HashidsParamConverter
     arguments:
-      $passThrough: '%danilovl.hashids.pass_through%'
+      $continueNextConverter: '%danilovl.hashids.continue_next_converter%'
     autowire: true
     public: true
     tags:
