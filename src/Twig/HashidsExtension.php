@@ -2,13 +2,13 @@
 
 namespace Danilovl\HashidsBundle\Twig;
 
-use Danilovl\HashidsBundle\Services\HashidsService;
+use Danilovl\HashidsBundle\Interfaces\HashidsServiceInterface;
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFilter;
 
 class HashidsExtension extends AbstractExtension
 {
-    public function __construct(private HashidsService $hashidsService)
+    public function __construct(private HashidsServiceInterface $hashidsService)
     {
     }
 

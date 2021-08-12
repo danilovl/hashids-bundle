@@ -2,6 +2,7 @@
 
 namespace Symfony\Component\DependencyInjection\Loader\Configurator;
 
+use Danilovl\HashidsBundle\Interfaces\HashidsServiceInterface;
 use Danilovl\HashidsBundle\Services\HashidsService;
 use Danilovl\HashidsBundle\ParamConverter\HashidsParamConverter;
 
@@ -15,7 +16,7 @@ return static function (ContainerConfigurator $container): void {
         ])
         ->autowire()
         ->public()
-        ->alias(HashidsService::class, 'danilovl.hashids');
+        ->alias(HashidsServiceInterface::class, 'danilovl.hashids');
 
     $container->services()
         ->set('danilovl.hashids_param_converter', HashidsParamConverter::class)

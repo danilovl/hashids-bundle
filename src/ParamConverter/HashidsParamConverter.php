@@ -2,7 +2,7 @@
 
 namespace Danilovl\HashidsBundle\ParamConverter;
 
-use Danilovl\HashidsBundle\Services\HashidsService;
+use Danilovl\HashidsBundle\Interfaces\HashidsServiceInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Sensio\Bundle\FrameworkExtraBundle\Request\ParamConverter\ParamConverterInterface;
 use Symfony\Component\HttpFoundation\Request;
@@ -10,7 +10,7 @@ use Symfony\Component\HttpFoundation\Request;
 class HashidsParamConverter implements ParamConverterInterface
 {
     public function __construct(
-        private HashidsService $hashidsService,
+        private HashidsServiceInterface $hashidsService,
         private bool $continueNextConverter
     ) {
     }
