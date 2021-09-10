@@ -86,7 +86,7 @@ class ConversationController extends AbstractController
 
 #### 2.2 Service
 
-Get service `danilovl_hashids` in controller.
+Get service `danilovl.hashids` in controller.
 
 ```php
 <?php declare(strict_types=1);
@@ -100,9 +100,9 @@ class UserController extends AbstractController
 {
     public function detail(Request $request): Response
     {
-        $userId = $this->get('danilovl_hashids')->decode($request->get('id'));
+        $userId = $this->get('danilovl.hashids')->decode($request->get('id'));
         if ($userId) {
-            $userId = $this->get('danilovl_hashids')->encode($request->get('id'));
+            $userId = $this->get('danilovl.hashids')->encode($request->get('id'));
         }
 
         return $this->render('profile/edit.html.twig', [
@@ -118,7 +118,7 @@ Hashids `encode` filter in templates.
 
 ```twig
    <a target="_blank"
-      href="{{ path('user_detail', { 'id': user.id | hashids_encode  }) }}"
+      href="{{ path('user_detail', { 'id': user.id | hashids_encode }) }}"
       class="btn btn-primary btn-xs">
        <i class="fa fa-desktop"></i>
        {{ 'app.form.action.show_detail' | trans() }}
