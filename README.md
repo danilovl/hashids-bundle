@@ -1,3 +1,5 @@
+[![phpunit](https://github.com/danilovl/hashids-bundle/actions/workflows/phpunit.yml/badge.svg)](https://github.com/danilovl/hashids-bundle/actions/workflows/phpunit.yml)
+
 # HashidsBundle #
 
 ## About ##
