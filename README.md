@@ -1,4 +1,7 @@
 [![phpunit](https://github.com/danilovl/hashids-bundle/actions/workflows/phpunit.yml/badge.svg)](https://github.com/danilovl/hashids-bundle/actions/workflows/phpunit.yml)
+[![downloads](https://img.shields.io/packagist/dt/danilovl/hashids-bundle)](https://packagist.org/packages/danilovl/hashids-bundle)
+[![latest Stable Version](https://img.shields.io/packagist/v/danilovl/hashids-bundle)](https://packagist.org/packages/danilovl/hashids-bundle)
+[![license](https://img.shields.io/packagist/l/danilovl/hashids-bundle)](https://packagist.org/packages/danilovl/hashids-bundle)
 
 # HashidsBundle #
 
@@ -137,3 +140,7 @@ Hashids `decode` filter in templates.
        {{ 'app.form.action.show_detail' | trans() }}
    </a>
 ```
+
+## License
+
+The HashidsBundle is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
