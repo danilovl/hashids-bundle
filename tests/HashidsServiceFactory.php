@@ -3,7 +3,7 @@
 namespace Danilovl\HashidsBundle\Tests;
 
 use Danilovl\HashidsBundle\Interfaces\HashidsServiceInterface;
-use Danilovl\HashidsBundle\Services\HashidsService;
+use Danilovl\HashidsBundle\Service\HashidsService;
 
 class HashidsServiceFactory
 {

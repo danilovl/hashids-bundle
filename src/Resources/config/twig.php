@@ -6,9 +6,8 @@ use Danilovl\HashidsBundle\Twig\HashidsExtension;
 
 return static function (ContainerConfigurator $container): void {
     $container->services()
-        ->set('danilovl.twig.hashids', HashidsExtension::class)
+        ->set(HashidsExtension::class, HashidsExtension::class)
         ->autowire()
         ->private()
-        ->tag('twig.extension')
-        ->alias(HashidsExtension::class, 'danilovl.twig.hashids');
+        ->tag('twig.extension');
 };

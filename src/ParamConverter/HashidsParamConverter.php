@@ -34,7 +34,7 @@ class HashidsParamConverter implements ParamConverterInterface
             $this->getIdentifier(
                 $request,
                 array_replace(['hashid' => null], $configuration->getOptions()),
-                (string) $configuration->getName()
+                $configuration->getName()
             )
         );
 

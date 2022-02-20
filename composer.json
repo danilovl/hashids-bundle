@@ -22,7 +22,9 @@
     "require": {
         "ext-gmp": "*",
         "php": "^8.0.0",
+        "sensio/framework-extra-bundle": "^5.0 || ^6.0",
         "symfony/framework-bundle": "^5.0 || ^6.0",
+        "symfony/yaml": "^5.0 || ^6.0",
         "symfony/twig-bundle": "^5.0 || ^6.0",
         "hashids/hashids": "^4.1.0"
     },

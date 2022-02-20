@@ -5,10 +5,7 @@ namespace Danilovl\HashidsBundle\Interfaces;
 interface HashidsServiceInterface
 {
 	public function encode(mixed ...$numbers): string;
-
 	public function decode(string $hash): array;
-
 	public function encodeHex(string $str): string;
-
 	public function decodeHex(string $hash): string;
 }

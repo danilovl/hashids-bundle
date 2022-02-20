@@ -1,22 +1,19 @@
 services:
+  _defaults:
+    autowire: true
+    public: true
+
   danilovl.hashids:
-    class: Danilovl\HashidsBundle\Services\HashidsService
+    class: Danilovl\HashidsBundle\Service\HashidsService
     arguments:
       - '%danilovl.hashids.salt%'
       - '%danilovl.hashids.min_hash_length%'
       - '%danilovl.hashids.alphabet%'
-    autowire: true
-    public: true
 
   Danilovl\HashidsBundle\Interfaces\HashidsServiceInterface: '@danilovl.hashids'
 
-  danilovl.hashids_param_converter:
-    class: Danilovl\HashidsBundle\ParamConverter\HashidsParamConverter
+  Danilovl\HashidsBundle\ParamConverter\HashidsParamConverter:
     arguments:
       $continueNextConverter: '%danilovl.hashids.continue_next_converter%'
-    autowire: true
-    public: true
     tags:
       - { name: request.param_converter, converter: danilovl.hashids_param_converter, priority: 1 }
-
-  Danilovl\HashidsBundle\ParamConverter\HashidsParamConverter: '@danilovl.hashids_param_converter'

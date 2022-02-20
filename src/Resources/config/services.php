@@ -3,7 +3,7 @@
 namespace Symfony\Component\DependencyInjection\Loader\Configurator;
 
 use Danilovl\HashidsBundle\Interfaces\HashidsServiceInterface;
-use Danilovl\HashidsBundle\Services\HashidsService;
+use Danilovl\HashidsBundle\Service\HashidsService;
 use Danilovl\HashidsBundle\ParamConverter\HashidsParamConverter;
 
 return static function (ContainerConfigurator $container): void {
@@ -19,10 +19,9 @@ return static function (ContainerConfigurator $container): void {
         ->alias(HashidsServiceInterface::class, 'danilovl.hashids');
 
     $container->services()
-        ->set('danilovl.hashids_param_converter', HashidsParamConverter::class)
+        ->set(HashidsParamConverter::class, HashidsParamConverter::class)
         ->arg('$continueNextConverter', param('danilovl.hashids.continue_next_converter'))
         ->autowire()
         ->public()
-        ->tag('request.param_converter', ['converter' => 'danilovl.hashids_param_converter', 'priority' => 1])
-        ->alias(HashidsParamConverter::class, 'danilovl.hashids_param_converter');
+        ->tag('request.param_converter', ['converter' => 'danilovl.hashids_param_converter', 'priority' => 1]);
 };
