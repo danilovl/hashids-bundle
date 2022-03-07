@@ -3,14 +3,13 @@ services:
     autowire: true
     public: true
 
-  danilovl.hashids:
-    class: Danilovl\HashidsBundle\Service\HashidsService
+  Danilovl\HashidsBundle\Service\HashidsService:
     arguments:
       - '%danilovl.hashids.salt%'
       - '%danilovl.hashids.min_hash_length%'
       - '%danilovl.hashids.alphabet%'
 
-  Danilovl\HashidsBundle\Interfaces\HashidsServiceInterface: '@danilovl.hashids'
+  Danilovl\HashidsBundle\Interfaces\HashidsServiceInterface: '@Danilovl\HashidsBundle\Service\HashidsService'
 
   Danilovl\HashidsBundle\ParamConverter\HashidsParamConverter:
     arguments:

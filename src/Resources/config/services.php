@@ -8,7 +8,7 @@ use Danilovl\HashidsBundle\ParamConverter\HashidsParamConverter;
 
 return static function (ContainerConfigurator $container): void {
     $container->services()
-        ->set('danilovl.hashids', HashidsService::class)
+        ->set(HashidsService::class, HashidsService::class)
         ->args([
             param('danilovl.hashids.salt'),
             param('danilovl.hashids.min_hash_length'),
@@ -16,7 +16,7 @@ return static function (ContainerConfigurator $container): void {
         ])
         ->autowire()
         ->public()
-        ->alias(HashidsServiceInterface::class, 'danilovl.hashids');
+        ->alias(HashidsServiceInterface::class, HashidsService::class);
 
     $container->services()
         ->set(HashidsParamConverter::class, HashidsParamConverter::class)

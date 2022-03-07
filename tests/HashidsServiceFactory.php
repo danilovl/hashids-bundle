@@ -10,9 +10,9 @@ class HashidsServiceFactory
     public static function getHashidsService(): HashidsServiceInterface
     {
         return new HashidsService(
-            salt: "ahi3fk7",
+            salt: 'ahi3fk7',
             minHashLength: 10,
-            alphabet: "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890"
+            alphabet: 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890'
         );
     }
 }

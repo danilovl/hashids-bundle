@@ -91,13 +91,14 @@ class ConversationController extends AbstractController
 
 #### 2.2 Service
 
-Get service `danilovl.hashids` in controller.
+Get service `HashidsService::class` in controller.
 
 ```php
 <?php declare(strict_types=1);
 
 namespace App\Controller;
 
+use Danilovl\HashidsBundle\Service\HashidsService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 
@@ -105,9 +106,41 @@ class UserController extends AbstractController
 {
     public function detail(Request $request): Response
     {
-        $userId = $this->get('danilovl.hashids')->decode($request->get('id'));
+        $userId = $this->get(HashidsService::class)->decode($request->get('id'));
         if ($userId) {
-            $userId = $this->get('danilovl.hashids')->encode($request->get('id'));
+            $userId = $this->get(HashidsService::class)->encode($request->get('id'));
+        }
+
+        return $this->render('profile/edit.html.twig', [
+            'userId' => $userId
+        ]);
+    }
+}
+```
+
+Simple DI integration.
+
+```php
+<?php declare(strict_types=1);
+
+namespace App\Controller;
+
+use Danilovl\HashidsBundle\Interfaces\HashidsServiceInterface;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
+
+class UserController extends AbstractController
+{
+    public function __construct(private HashidsServiceInterface $hashidsService)
+    {
+    }
+
+    public function detail(Request $request): Response
+    {
+        $userId = $this->hashidsService->decode($request->get('id'));
+        if ($userId) {
+            $userId = $this->hashidsService->encode($request->get('id'));
         }
 
         return $this->render('profile/edit.html.twig', [
