@@ -10,8 +10,8 @@ use Symfony\Component\HttpFoundation\Request;
 class HashidsParamConverter implements ParamConverterInterface
 {
     public function __construct(
-        private HashidsServiceInterface $hashidsService,
-        private bool $continueNextConverter
+        private readonly HashidsServiceInterface $hashidsService,
+        private readonly bool $continueNextConverter
     ) {
     }
 
