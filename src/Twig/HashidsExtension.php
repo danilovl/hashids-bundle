@@ -16,7 +16,7 @@ class HashidsExtension extends AbstractExtension
     {
         return [
             new TwigFilter('hashids_encode', [$this, 'encode']),
-            new TwigFilter('hashids_decode', [$this, 'decode']),
+            new TwigFilter('hashids_decode', [$this, 'decode'])
         ];
     }
 

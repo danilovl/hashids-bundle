@@ -20,8 +20,8 @@ return static function (ContainerConfigurator $container): void {
 
     $container->services()
         ->set(HashidsParamConverter::class, HashidsParamConverter::class)
-        ->arg('$continueNextConverter', param('danilovl.hashids.continue_next_converter'))
+        ->arg('$enable', param('danilovl.hashids.enable_param_converter'))
         ->autowire()
         ->public()
-        ->tag('request.param_converter', ['converter' => 'danilovl.hashids_param_converter', 'priority' => 1]);
+        ->tag('controller.argument_value_resolver', ['priority' => 111]);
 };

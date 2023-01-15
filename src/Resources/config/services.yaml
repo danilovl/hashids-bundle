@@ -13,6 +13,6 @@ services:
 
   Danilovl\HashidsBundle\ParamConverter\HashidsParamConverter:
     arguments:
-      $continueNextConverter: '%danilovl.hashids.continue_next_converter%'
+      $enable: '%danilovl.hashids.enable_param_converter%'
     tags:
-      - { name: request.param_converter, converter: danilovl.hashids_param_converter, priority: 1 }
+      - { name: controller.argument_value_resolver, priority: 222 }

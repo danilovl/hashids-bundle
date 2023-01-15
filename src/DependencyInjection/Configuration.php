@@ -29,7 +29,7 @@ class Configuration implements ConfigurationInterface
                 ->scalarNode('alphabet')
                     ->defaultValue('abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890')
                 ->end()
-                ->booleanNode('continue_next_converter')
+                ->booleanNode('enable_param_converter')
                     ->defaultFalse()
                 ->end()
             ->end();

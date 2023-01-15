@@ -11,8 +11,8 @@ Symfony bundle provides integrates hashids.
 
 ### Requirements
 
-* PHP 8.1.0 or higher
-* Symfony 6.0 or higher
+* PHP 8.2.0 or higher
+* Symfony 6.2 or higher
 * Hashids 4.1.0 or higher
 
 ### 1. Installation
@@ -46,7 +46,7 @@ danilovl_hashids:
   salt: 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890'
   min_hash_length: 20
   alphabet: 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890'
-  continue_next_converter: false 
+  enable_param_converter: false 
 ```
 
 

@@ -3,82 +3,86 @@
 namespace Danilovl\HashidsBundle\ParamConverter;
 
 use Danilovl\HashidsBundle\Interfaces\HashidsServiceInterface;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
-use Sensio\Bundle\FrameworkExtraBundle\Request\ParamConverter\ParamConverterInterface;
+use Doctrine\ORM\Mapping\{
+    Id,
+    Entity
+};
+use ReflectionClass;
+use Symfony\Bridge\Doctrine\Attribute\MapEntity;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpKernel\Controller\ValueResolverInterface;
+use Symfony\Component\HttpKernel\ControllerMetadata\ArgumentMetadata;
+use Throwable;
 
-class HashidsParamConverter implements ParamConverterInterface
+class HashidsParamConverter implements ValueResolverInterface
 {
     public function __construct(
-        private readonly HashidsServiceInterface $hashidsService,
-        private readonly bool $continueNextConverter
-    ) {
-    }
+        private readonly bool $enable,
+        private readonly HashidsServiceInterface $hashidsService
+    ) {}
 
-    public function apply(Request $request, ParamConverter $configuration): bool
+    public function resolve(Request $request, ArgumentMetadata $argument): array
     {
-        $this->setHashid($request, $configuration);
-        $this->removeHashidOption($configuration);
-
-        return $this->continueWithNextParamConverters();
-    }
-
-    public function supports(ParamConverter $configuration): bool
-    {
-        return true;
-    }
-
-    private function setHashid(Request $request, ParamConverter $configuration): void
-    {
-        $hashids = $this->hashidsService->decode(
-            $this->getIdentifier(
-                $request,
-                array_replace(['hashid' => null], $configuration->getOptions()),
-                $configuration->getName()
-            )
-        );
-
-        if ($this->hasHashidDecoded($hashids)) {
-            $request->attributes->set($configuration->getName(), current($hashids));
-        }
-    }
-
-    private function getIdentifier(Request $request, $options, string $name): string
-    {
-        if ($options['hashid'] && !is_array($options['hashid'])) {
-            $name = $options['hashid'];
+        if (!$this->enable) {
+            return [];
         }
 
-        if ($request->attributes->has($name)) {
-            return (string) $request->attributes->get($name);
+        if (is_object($request->attributes->get($argument->getName()))) {
+            return [];
         }
 
-        foreach (['id', 'hashid'] as $item) {
-            if ($request->attributes->has($item) && !$options['hashid']) {
-                return (string) $request->attributes->get($item);
+        $mappingAttributes = [];
+
+        try {
+            $className = $argument->getType();
+            $reflection = (new ReflectionClass($className));
+            $attributes = $reflection->getAttributes(Entity::class);
+
+            if (count($attributes) !== 0) {
+                foreach ($reflection->getProperties() as $reflectionProperty) {
+                    $reflectionPropertyAttributes = $reflectionProperty->getAttributes(Id::class);
+                    if (count($reflectionPropertyAttributes) !== 0) {
+                        $mappingAttributes[] = $reflectionProperty->getName();
+                    }
+                }
+            }
+        } catch (Throwable) {}
+
+        $mapEntity = $argument->getAttributes(MapEntity::class, ArgumentMetadata::IS_INSTANCEOF);
+        $mapEntity = $mapEntity[0] ?? null;
+
+        if ($mapEntity !== null) {
+            $mappingAttributes = array_merge($mappingAttributes, array_keys($mapEntity->mapping));
+        }
+
+        if (!class_exists($argument->getName())) {
+            $mappingAttributes[] = $argument->getName();
+        }
+
+        $this->setHashid($request, $mappingAttributes);
+
+        return [];
+    }
+
+    private function setHashid(Request $request, array $mappingIds): void
+    {
+        foreach ($mappingIds as $mappingId) {
+            $hash = $request->attributes->get($mappingId);
+            if ($hash === null) {
+                continue;
+            }
+
+            $hash = (string) $hash;
+            $hashids = $this->hashidsService->decode($hash);
+
+            if ($this->hasHashidDecoded($hashids)) {
+                $request->attributes->set($mappingId, current($hashids));
             }
         }
-
-        return '';
     }
 
     private function hasHashidDecoded(mixed $hashids): bool
     {
         return $hashids && is_iterable($hashids);
-    }
-
-    private function removeHashidOption(ParamConverter $configuration): void
-    {
-        $options = $configuration->getOptions();
-
-        if (isset($options['hashid'])) {
-            unset($options['hashid']);
-            $configuration->setOptions($options);
-        }
-    }
-
-    private function continueWithNextParamConverters(): bool
-    {
-        return !$this->continueNextConverter;
     }
 }
