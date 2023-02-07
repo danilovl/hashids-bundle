@@ -14,11 +14,11 @@ use Symfony\Component\HttpKernel\Controller\ValueResolverInterface;
 use Symfony\Component\HttpKernel\ControllerMetadata\ArgumentMetadata;
 use Throwable;
 
-class HashidsParamConverter implements ValueResolverInterface
+readonly class HashidsParamConverter implements ValueResolverInterface
 {
     public function __construct(
-        private readonly bool $enable,
-        private readonly HashidsServiceInterface $hashidsService
+        private bool $enable,
+        private HashidsServiceInterface $hashidsService
     ) {}
 
     public function resolve(Request $request, ArgumentMetadata $argument): array
