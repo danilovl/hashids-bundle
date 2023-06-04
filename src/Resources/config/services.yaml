@@ -16,3 +16,8 @@ services:
       $enable: '%danilovl.hashids.enable_param_converter%'
     tags:
       - { name: controller.argument_value_resolver, priority: 222 }
+
+  Danilovl\HashidsBundle\EventListener\KernelListener:
+    autoconfigure: true
+    arguments:
+      $enable: '%danilovl.hashids.enable_param_converter%'

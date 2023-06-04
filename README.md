@@ -12,7 +12,7 @@ Symfony bundle provides integrates hashids.
 ### Requirements
 
 * PHP 8.2.0 or higher
-* Symfony 6.2 or higher
+* Symfony 6.3 or higher
 * Hashids 4.1.0 or higher
 
 ### 1. Installation
@@ -87,6 +87,21 @@ class ConversationController extends AbstractController
         ]);
     }
 }
+```
+
+Attribute if using `MapEntity` with specific keys in request.
+
+```php
+    #[HashidsRequestConverterAttribute(requestAttributesKeys: ['id_work', 'id_task'])]
+    public function edit(
+        Request $request,
+        #[MapEntity(mapping: ['id_work' => 'id'])] Work $work,
+        #[MapEntity(mapping: ['id_task' => 'id'])] Task $task
+    ): Response {
+        $this->denyAccessUnlessGranted(VoterSupportConstant::EDIT, $task);
+
+        return $this->taskEditHandle->handle($request, $work, $task);
+    }
 ```
 
 #### 2.2 Service
