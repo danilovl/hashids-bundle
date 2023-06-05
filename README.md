@@ -92,16 +92,16 @@ class ConversationController extends AbstractController
 Attribute if using `MapEntity` with specific keys in request.
 
 ```php
-    #[HashidsRequestConverterAttribute(requestAttributesKeys: ['id_work', 'id_task'])]
-    public function edit(
-        Request $request,
-        #[MapEntity(mapping: ['id_work' => 'id'])] Work $work,
-        #[MapEntity(mapping: ['id_task' => 'id'])] Task $task
-    ): Response {
-        $this->denyAccessUnlessGranted(VoterSupportConstant::EDIT, $task);
+#[HashidsRequestConverterAttribute(requestAttributesKeys: ['id_work', 'id_task'])]
+public function edit(
+    Request $request,
+    #[MapEntity(mapping: ['id_work' => 'id'])] Work $work,
+    #[MapEntity(mapping: ['id_task' => 'id'])] Task $task
+): Response {
+    $this->denyAccessUnlessGranted(VoterSupportConstant::EDIT, $task);
 
-        return $this->taskEditHandle->handle($request, $work, $task);
-    }
+    return $this->taskEditHandle->handle($request, $work, $task);
+}
 ```
 
 #### 2.2 Service
