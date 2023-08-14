@@ -5,6 +5,7 @@ namespace Danilovl\ApplyFilterTwigExtensionBundle\Tests\Twig;
 use Danilovl\HashidsBundle\Tests\HashidsServiceFactory;
 use Danilovl\HashidsBundle\Twig\HashidsExtension;
 use Generator;
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 use Twig\Environment;
 use Twig\Loader\FilesystemLoader;
@@ -23,9 +24,7 @@ class HashidsExtensionTest extends TestCase
         $this->twig->addExtension($hashidsExtension);
     }
 
-    /**
-     * @dataProvider filtersProvider
-     */
+    #[DataProvider('filtersProvider')]
     public function testFilters(string $template, string $result): void
     {
         $output = $this->twig->createTemplate($template)->render();
@@ -33,7 +32,7 @@ class HashidsExtensionTest extends TestCase
         $this->assertEquals($output, $result);
     }
 
-    public function filtersProvider(): Generator
+    public static function filtersProvider(): Generator
     {
         yield ["{{ 1 | hashids_encode }}", 'JjzrKkrqKQ'];
         yield ["{{ 283 | hashids_encode }}", 'gBAd03KoG2'];

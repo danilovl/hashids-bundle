@@ -30,6 +30,6 @@
         "symfony/yaml": "^6.3"
     },
     "require-dev": {
-        "phpunit/phpunit": "^9.5"
+        "phpunit/phpunit": "^10.2"
     }
 }

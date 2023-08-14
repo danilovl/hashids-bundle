@@ -5,6 +5,7 @@ namespace Danilovl\HashidsBundle\Services;
 use Danilovl\HashidsBundle\Interfaces\HashidsServiceInterface;
 use Danilovl\HashidsBundle\Tests\HashidsServiceFactory;
 use Generator;
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 
 class HashidsServiceTest extends TestCase
@@ -16,9 +17,7 @@ class HashidsServiceTest extends TestCase
         $this->hashidsService = HashidsServiceFactory::getHashidsService();
     }
 
-    /**
-     * @dataProvider encodeData
-     */
+    #[DataProvider('encodeData')]
     public function testEncode(mixed $number, string $expectedValue): void
     {
         $value = $this->hashidsService->encode($number);
@@ -26,9 +25,7 @@ class HashidsServiceTest extends TestCase
         $this->assertEquals($expectedValue, $value);
     }
 
-    /**
-     * @dataProvider decodeData
-     */
+    #[DataProvider('decodeData')]
     public function testDecode(string $hash, array $expectedValue): void
     {
         $value = $this->hashidsService->decode($hash);
@@ -36,9 +33,7 @@ class HashidsServiceTest extends TestCase
         $this->assertEquals($expectedValue, $value);
     }
 
-    /**
-     * @dataProvider encodeHexData
-     */
+    #[DataProvider('encodeHexData')]
     public function testEncodeHex(string $str, string $expectedValue): void
     {
         $value = $this->hashidsService->encodeHex($str);
@@ -46,9 +41,7 @@ class HashidsServiceTest extends TestCase
         $this->assertEquals($expectedValue, $value);
     }
 
-    /**
-     * @dataProvider decodeHexData
-     */
+    #[DataProvider('decodeHexData')]
     public function testDecodeHex(string $hash, string $expectedValue): void
     {
         $value = $this->hashidsService->decodeHex($hash);
@@ -56,7 +49,7 @@ class HashidsServiceTest extends TestCase
         $this->assertEquals($expectedValue, $value);
     }
 
-    public function encodeData(): Generator
+    public static function encodeData(): Generator
     {
         yield [1, 'JjzrKkrqKQ'];
         yield [283, 'gBAd03KoG2'];
@@ -65,7 +58,7 @@ class HashidsServiceTest extends TestCase
         yield [[333, 48932, 942380], '0m1twZ1SvV2M'];
     }
 
-    public function decodeData(): Generator
+    public static function decodeData(): Generator
     {
         yield ['JjzrKkrqKQ', [1]];
         yield ['gBAd03KoG2', [283]];
@@ -74,14 +67,14 @@ class HashidsServiceTest extends TestCase
         yield ['0m1twZ1SvV2M', [333, 48932, 942380]];
     }
 
-    public function encodeHexData(): Generator
+    public static function encodeHexData(): Generator
     {
         yield ['8118f5c6a', 'r69OalwAgd'];
         yield ['4c7b6657981d57a', 'KXaAbPxxR6hLej'];
         yield ['64', 'AzBd3gqdl2'];
     }
 
-    public function decodeHexData(): Generator
+    public static function decodeHexData(): Generator
     {
         yield ['r69OalwAgd', '8118f5c6a'];
         yield ['KXaAbPxxR6hLej', '4c7b6657981d57a'];
