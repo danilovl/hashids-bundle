@@ -12,8 +12,8 @@ Symfony bundle provides integrates hashids.
 ### Requirements
 
 * PHP 8.3 or higher
-* Symfony 6.3 or higher
-* Hashids 4.1.0 or higher
+* Symfony 7.0 or higher
+* Hashids 5.0 or higher
 
 ### 1. Installation
 
