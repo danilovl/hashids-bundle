@@ -21,7 +21,7 @@
     },
     "require": {
         "ext-gmp": "*",
-        "php": "^8.2.0",
+        "php": "^8.3",
         "doctrine/orm": "^2.9",
         "hashids/hashids": "^4.1.0",
         "symfony/doctrine-bridge": "^6.3",

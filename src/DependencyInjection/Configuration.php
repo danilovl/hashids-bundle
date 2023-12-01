@@ -10,7 +10,7 @@ use Symfony\Component\Config\Definition\ConfigurationInterface;
 
 class Configuration implements ConfigurationInterface
 {
-    public const ALIAS = 'danilovl_hashids';
+    public const string ALIAS = 'danilovl_hashids';
 
     public function getConfigTreeBuilder(): NodeParentInterface
     {

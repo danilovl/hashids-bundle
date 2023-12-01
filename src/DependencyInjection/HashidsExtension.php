@@ -10,8 +10,8 @@ use Symfony\Component\DependencyInjection\Loader\YamlFileLoader;
 
 class HashidsExtension extends Extension
 {
-    private const DIR_CONFIG = '/../Resources/config';
-    private const DIR_CONFIG_PARAM = self::DIR_CONFIG . '/parameters.yaml';
+    private const string DIR_CONFIG = '/../Resources/config';
+    private const string DIR_CONFIG_PARAM = self::DIR_CONFIG . '/parameters.yaml';
 
     public function load(array $configs, ContainerBuilder $container): void
     {
