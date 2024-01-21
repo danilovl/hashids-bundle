@@ -50,6 +50,7 @@ readonly class KernelListener implements EventSubscriberInterface
         HashidsRequestConverterAttribute $hashidsParamConverterAttribute
     ): void {
         foreach ($hashidsParamConverterAttribute->requestAttributesKeys as $requestAttributesHashKey) {
+            /** @var string|null $hash */
             $hash = $request->attributes->get($requestAttributesHashKey);
             if ($hash === null) {
                 continue;

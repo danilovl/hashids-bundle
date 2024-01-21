@@ -25,7 +25,7 @@ class HashidsExtension extends AbstractExtension
         return $this->hashidsService->encode($number);
     }
 
-    public function decode(mixed $hash): array
+    public function decode(string $hash): array
     {
         return $this->hashidsService->decode($hash);
     }

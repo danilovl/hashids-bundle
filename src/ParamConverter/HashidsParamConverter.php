@@ -49,9 +49,10 @@ readonly class HashidsParamConverter implements ValueResolverInterface
         } catch (Throwable) {}
 
         $mapEntity = $argument->getAttributes(MapEntity::class, ArgumentMetadata::IS_INSTANCEOF);
+        /** @var MapEntity|null $mapEntity */
         $mapEntity = $mapEntity[0] ?? null;
 
-        if ($mapEntity !== null) {
+        if ($mapEntity !== null && $mapEntity->mapping !== null) {
             $mappingAttributes = array_merge($mappingAttributes, array_keys($mapEntity->mapping));
         }
 
@@ -67,6 +68,7 @@ readonly class HashidsParamConverter implements ValueResolverInterface
     private function setHashid(Request $request, array $mappingIds): void
     {
         foreach ($mappingIds as $mappingId) {
+            /** @var string|null $hash */
             $hash = $request->attributes->get($mappingId);
             if ($hash === null) {
                 continue;

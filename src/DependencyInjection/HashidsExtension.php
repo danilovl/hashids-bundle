@@ -27,7 +27,9 @@ class HashidsExtension extends Extension
 
     private function createParameters(ContainerBuilder $container, array $config): void
     {
-        $parameters = Yaml::parseFile(__DIR__ . self::DIR_CONFIG_PARAM)['hashids']['parameters'] ?? [];
+        /** @var array $yamlParameter */
+        $yamlParameter =  Yaml::parseFile(__DIR__ . self::DIR_CONFIG_PARAM);
+        $parameters = $yamlParameter['hashids']['parameters'] ?? [];
 
         foreach ($parameters as $parameter) {
             $container->setParameter("danilovl.hashids.{$parameter}", $config[$parameter]);
