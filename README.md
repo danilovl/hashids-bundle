@@ -20,7 +20,7 @@ Symfony bundle provides integrates hashids.
 Install `danilovl/hashids-bundle` package by Composer:
 
 ``` bash
-$ composer require danilovl/hashids-bundle
+composer require danilovl/hashids-bundle
 ```
 
 Add the `HashidsBundle` to your application's bundles if does not add automatically:
