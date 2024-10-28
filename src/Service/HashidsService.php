@@ -5,6 +5,4 @@ namespace Danilovl\HashidsBundle\Service;
 use Danilovl\HashidsBundle\Interfaces\HashidsServiceInterface;
 use Hashids\Hashids;
 
-class HashidsService extends Hashids implements HashidsServiceInterface
-{
-}
+class HashidsService extends Hashids implements HashidsServiceInterface {}

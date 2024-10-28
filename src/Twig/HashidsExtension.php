@@ -8,9 +8,7 @@ use Twig\TwigFilter;
 
 class HashidsExtension extends AbstractExtension
 {
-    public function __construct(private readonly HashidsServiceInterface $hashidsService)
-    {
-    }
+    public function __construct(private readonly HashidsServiceInterface $hashidsService) {}
 
     public function getFilters(): array
     {

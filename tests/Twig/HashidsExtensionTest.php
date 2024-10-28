@@ -14,7 +14,7 @@ class HashidsExtensionTest extends TestCase
 {
     private Environment $twig;
 
-    public function setUp(): void
+    protected function setUp(): void
     {
         $this->twig = new Environment(new FilesystemLoader, [
             'cache' => __DIR__ . '/../../var/cache/twig-test',

@@ -12,7 +12,7 @@ class HashidsServiceTest extends TestCase
 {
     private HashidsServiceInterface $hashidsService;
 
-    public function setUp(): void
+    protected function setUp(): void
     {
         $this->hashidsService = HashidsServiceFactory::getHashidsService();
     }
@@ -53,18 +53,18 @@ class HashidsServiceTest extends TestCase
     {
         yield [1, 'JjzrKkrqKQ'];
         yield [283, 'gBAd03KoG2'];
-        yield [93835, '1Gr951Oyrl'];
-        yield [[333, 7777], '4dVP6TQxLN'];
-        yield [[333, 48932, 942380], '0m1twZ1SvV2M'];
+        yield [93_835, '1Gr951Oyrl'];
+        yield [[333, 7_777], '4dVP6TQxLN'];
+        yield [[333, 48_932, 942_380], '0m1twZ1SvV2M'];
     }
 
     public static function decodeData(): Generator
     {
         yield ['JjzrKkrqKQ', [1]];
         yield ['gBAd03KoG2', [283]];
-        yield ['1Gr951Oyrl', [93835]];
-        yield ['4dVP6TQxLN', [333, 7777]];
-        yield ['0m1twZ1SvV2M', [333, 48932, 942380]];
+        yield ['1Gr951Oyrl', [93_835]];
+        yield ['4dVP6TQxLN', [333, 7_777]];
+        yield ['0m1twZ1SvV2M', [333, 48_932, 942_380]];
     }
 
     public static function encodeHexData(): Generator

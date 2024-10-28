@@ -15,7 +15,7 @@ class HashidsExtension extends Extension
 
     public function load(array $configs, ContainerBuilder $container): void
     {
-        $configuration = new Configuration();
+        $configuration = new Configuration;
         $config = $this->processConfiguration($configuration, $configs);
 
         $loader = new YamlFileLoader($container, new FileLocator(__DIR__ . self::DIR_CONFIG));
@@ -28,7 +28,7 @@ class HashidsExtension extends Extension
     private function createParameters(ContainerBuilder $container, array $config): void
     {
         /** @var array $yamlParameter */
-        $yamlParameter =  Yaml::parseFile(__DIR__ . self::DIR_CONFIG_PARAM);
+        $yamlParameter = Yaml::parseFile(__DIR__ . self::DIR_CONFIG_PARAM);
         $parameters = $yamlParameter['hashids']['parameters'] ?? [];
 
         foreach ($parameters as $parameter) {
