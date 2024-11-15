@@ -8,6 +8,7 @@ parameters:
     - tests
  excludePaths:
      - src/DependencyInjection/Configuration.php
- treatPhpDocTypesAsCertain: false
- checkMissingIterableValueType: false
- checkGenericClassInNonGenericObjectType: false
+ ignoreErrors:
+    -
+        identifier: missingType.iterableValue
+
